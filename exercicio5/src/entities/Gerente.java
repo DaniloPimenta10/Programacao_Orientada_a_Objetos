@@ -18,9 +18,8 @@ public class Gerente extends Pessoa {
         
         System.out.println("Digite a matricula do gerente: ");
         this.matricula = sc.next();
-        
-        System.out.println("Digite a senha do gerente: ");
-        this.senha = sc.next();
+
+        this.senha = "123456";
         
         sc.close();
     }

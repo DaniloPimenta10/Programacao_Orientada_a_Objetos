@@ -76,7 +76,6 @@ public class Conta {
     }
 
     public void extrato() {
-        System.out.println("*** EXTRATO DA CONTA ***");
         System.out.println("Conta: " + this.numero);
         System.out.println("Titular: " + this.titular.cpf);
         System.out.println("Valor disponivel para saque: R$" + this.disponivel() + "\n");

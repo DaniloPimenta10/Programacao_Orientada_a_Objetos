@@ -11,10 +11,9 @@ public class ContaPoupanca extends Conta{
     }
 
     public void extrato() {
-        System.out.println("*** EXTRATO DA CONTA ***");
-        System.out.println("Conta: " + this.numero);
-        System.out.println("Titular: " + this.titular.cpf);
-        System.out.println("Valor disponivel para saque: R$" + this.disponivel() + "\n");
+        System.out.println("*** EXTRATO DE POUPANCA ***");
+        super.extrato();
+        
     }
 
     public void rendimento(double j){

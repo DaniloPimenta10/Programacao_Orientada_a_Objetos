@@ -3,7 +3,7 @@ package entities;
 import java.util.Scanner;
 
 public class ContaCorrente extends Conta{
-    public double limite;
+    private double limite;
 
     public ContaCorrente(String n, Pessoa t, Gerente g, Data d){
         super(n, t, g, d);
@@ -15,7 +15,7 @@ public class ContaCorrente extends Conta{
         this.limite = 200;
     }
 
-    public double disponivel(){
+    protected double disponivel(){
         return super.disponivel() + this.limite;
     }
 

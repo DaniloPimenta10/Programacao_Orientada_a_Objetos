@@ -3,11 +3,11 @@ package entities;
 import java.util.Scanner;
 
 public class Conta {
-    public String numero;
-    public Pessoa titular;
-    public double saldo;
-    public Gerente ger;
-    public Data dataCriacao;
+    protected String numero;
+    protected Pessoa titular;
+    protected double saldo;
+    protected Gerente ger;
+    protected Data dataCriacao;
 
     public Conta(String n, Pessoa t, Gerente g, Data d) {
         this.numero = n;
@@ -36,7 +36,7 @@ public class Conta {
 
     }
 
-    public double disponivel() {
+    protected double disponivel() {
         return this.saldo;
     }
 

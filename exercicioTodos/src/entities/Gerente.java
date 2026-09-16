@@ -3,8 +3,8 @@ package entities;
 import java.util.Scanner;
 
 public class Gerente extends Pessoa {
-    String matricula;
-    String senha;
+    private String matricula;
+    private String senha;
 
     public Gerente(String n, Data i, char s, String c, String mat, String senha){
         super(n, i, s, c);

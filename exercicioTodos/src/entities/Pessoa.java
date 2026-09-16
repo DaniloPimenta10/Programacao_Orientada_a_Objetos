@@ -3,10 +3,10 @@ package entities;
 import java.util.Scanner;
 
 public class Pessoa {
-    public String nome;
-    public String cpf;
-    public Data nascimento;
-    public char sexo;
+    protected  String nome;
+    protected  String cpf;
+    protected  Data nascimento;
+    protected char sexo;
 
     public Pessoa(String n, Data i, char s, String c) {
           
@@ -37,12 +37,12 @@ public class Pessoa {
     }
 
     public int idade(Data hoje) {
-        int idade = hoje.ano - this.nascimento.ano;
+        int idade = hoje.getAno() - this.nascimento.getAno();
 
-        if (hoje.mes < this.nascimento.mes) {
+        if (hoje.getMes() < this.nascimento.getMes()) {
             idade--;
-        } else if (hoje.mes == this.nascimento.mes) {
-            if (hoje.dia < this.nascimento.dia) {
+        } else if (hoje.getMes() == this.nascimento.getMes()) {
+            if (hoje.getDia() < this.nascimento.getDia()) {
                 idade--;
             }
         }

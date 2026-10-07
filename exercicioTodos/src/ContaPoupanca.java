@@ -1,5 +1,3 @@
-package entities;
-
 public class ContaPoupanca extends Conta{
     
     public ContaPoupanca(String n, Pessoa t, Gerente g, Data d) {

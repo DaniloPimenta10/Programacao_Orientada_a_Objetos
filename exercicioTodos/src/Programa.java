@@ -1,10 +1,3 @@
-package application;
-
-import entities.ContaCorrente;
-import entities.ContaPoupanca;
-import entities.Gerente;
-import entities.Pessoa;
-
 public class Programa {
     public static void main(String[] args) {
         System.out.println("=== INICIANDO O SISTEMA BANCARIO ===");

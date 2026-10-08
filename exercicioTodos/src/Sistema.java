@@ -2,8 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Sistema {
-    private ArrayList <ContaCorrente> contasCorrentes = new ArrayList<>();
-    private ArrayList <ContaPoupanca> contasPoupancas = new ArrayList<>();
+    private ArrayList<Conta> contas = new ArrayList<>();
     private ArrayList <Gerente> gerentes = new ArrayList<>();
     private ArrayList <Pessoa> clientes = new ArrayList<>();
     
@@ -11,8 +10,7 @@ public class Sistema {
     public Sistema () {
         this.gerentes = new ArrayList<>();
         this.clientes = new ArrayList<>();
-        this.contasCorrentes = new ArrayList<>();
-        this.contasPoupancas = new ArrayList<>();
+        this.contas = new ArrayList<>();
     }
     
     public void CadastrarGerente(Gerente g) {
@@ -23,21 +21,13 @@ public class Sistema {
         this.clientes.add(p);
     }
 
-    public void CadastrarContaCorrente(ContaCorrente c) {
-        this.contasCorrentes.add(c);
+    public void cadastrarConta(Conta c) {
+        this.contas.add(c);
     }
 
-    public void CadastrarContaPoupanca(ContaPoupanca c) {
-        this.contasPoupancas.add(c);
-    }
-
-    public ArrayList<ContaCorrente> getContasCorrentes() {
-        return contasCorrentes;
-    }
-
-    public ArrayList<ContaPoupanca> getContasPoupancas() {
-        return contasPoupancas;
-    }
+    public ArrayList<Conta> getContas() {
+            return contas;
+        }
 
     public ArrayList<Gerente> getGerentes() {
         return gerentes;
@@ -47,7 +37,28 @@ public class Sistema {
         return clientes;
     }
 
+    public Gerente procuraGerente(String mat) {
+        
+        for (int i = 0; i < gerentes.size(); i++){
+            Gerente g = gerentes.get(i);
+            if (mat.equals(g.getMatricula()))
+                return gerentes.get(i);
+        }
+        
+        return null;
+    }
     
+    public Conta procuraConta(String n) {
+        
+        for (int i = 0; i < contas.size(); i++){
+            Conta c = contas.get(i);
+            if (n.equals(c.getNumero()))
+                return contas.get(i);
+        }
+        
+        return null;
+    }
+
     public static int menu (Scanner input){
         
         String msg = "*******************\n" +
@@ -61,7 +72,7 @@ public class Sistema {
         int op = Entrada.lerInteiro(msg, input);
 
         while (op < 0 || op > 2) {
-            System . out . println (" Opcao invalida . Tente novamente : ") ;
+            System.out.println (" Opcao invalida . Tente novamente : ") ;
             op = Entrada.lerInteiro(msg, input);
         }
 
@@ -81,6 +92,8 @@ public class Sistema {
 
     public void cadastro(Scanner input){
         
+        String msgGerente = "Indique a matrícula do gerente: ";
+
         String msg = "*******************\n" +
         "a) Adicionar pessoa" +
         "b) Adicionar gerente" +
@@ -88,7 +101,7 @@ public class Sistema {
         "d) Criar poupança" +
         "*******************\n";
 
-        String opcao = Entrada.lerLinha(msg, input);
+        String opcao = Entrada.lerLinha(msg, input);        
 
         while (opcao != "a" || opcao != "b" || opcao != "c" || opcao != "d") {
             System . out . println (" Opcao invalida . Tente novamente : ") ;
@@ -106,18 +119,27 @@ public class Sistema {
         }
     
         if (opcao == "c") {
-            ContaCorrente c = new ContaCorrente();  //como colocar o gerente
-            CadastrarContaCorrente(c);
+            
+            String mat = Entrada.lerLinha(msgGerente, input);
+            Gerente g = procuraGerente(mat);
+
+            ContaCorrente c = new ContaCorrente(g);  //como colocar o gerente
+            cadastrarConta(c);
         }
         
         if (opcao == "d") {
-            ContaPoupanca c = new ContaPoupanca(); //como colocar o gerente?
-            CadastrarContaPoupanca(c);
+
+            String mat = Entrada.lerLinha(msgGerente, input);
+            Gerente g = procuraGerente(mat);
+            ContaPoupanca c = new ContaPoupanca(g); //como colocar o gerente?
+            cadastrarConta(c);
         }   
     
     }
 
     public void operacoes(Scanner input) {
+
+        String msgNum = "Indique o número da conta: ";
 
         String msg = "*******************\n" +
         "a) Verificar extrato" +
@@ -133,24 +155,38 @@ public class Sistema {
         } 
 
         if (opcao == "a") {
-            System.out.println("Indique o número da conta: ");
-            String n = input.nextLine();
+            String n = Entrada.lerLinha(msgNum, input);
+            Conta c = procuraConta(n);
             c.extrato(); //
         }
 
         if (opcao == "b") {
-            Gerente g = new Gerente();
-            CadastrarGerente(g);
+            
+            String n = Entrada.lerLinha(msgNum, input);
+            Conta c = procuraConta(n);
+            
+            Double v = Entrada.lerDouble("Informe o valor do depósito: ", input);
+            c.depositar(v);
         }
     
         if (opcao == "c") {
-            ContaCorrente c = new ContaCorrente();
-            CadastrarContaCorrente(c);
+            
+            String n = Entrada.lerLinha(msgNum, input);
+            Conta c = procuraConta(n);
+            
+            Double v = Entrada.lerDouble("Informe o valor do saque: ", input);
+            c.sacar(v);
         }
         
         if (opcao == "d") {
-            ContaPoupanca c = new ContaPoupanca();
-            CadastrarContaPoupanca(c);
+            String n = Entrada.lerLinha("Indique o número da conta que vai enviar: ", input);
+            Conta c1 = procuraConta(n);
+            
+            n = Entrada.lerLinha("Indique o número da conta que vai receber: ", input);
+            Conta c2 = procuraConta(n);
+
+            Double v = Entrada.lerDouble("Informe o valor da transferencia: ", input);
+            c1.transferir(v , c2);
         }  
 
     }

@@ -34,6 +34,34 @@ public class Conta {
 
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public Pessoa getTitular() {
+        return titular;
+    }
+
+    public void setTitular(Pessoa titular) {
+        this.titular = titular;
+    }
+
+    public Gerente getGer() {
+        return ger;
+    }
+
+    public void setGer(Gerente ger) {
+        this.ger = ger;
+    }
+
+    public Data getDataCriacao() {
+        return dataCriacao;
+    }
+
     protected double disponivel() {
         return this.saldo;
     }

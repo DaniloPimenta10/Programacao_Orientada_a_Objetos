@@ -22,6 +22,15 @@ public class Gerente extends Pessoa {
         sc.close();
     }
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+    
+
     public boolean validaAcesso(String s) {
         return this.senha.equals(s);
     }
@@ -33,4 +42,6 @@ public class Gerente extends Pessoa {
         sc.close();
         return this.senha.equals(s);
     }
+
+
 }

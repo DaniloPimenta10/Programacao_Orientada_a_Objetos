@@ -48,7 +48,7 @@ public class Sistema {
     }
 
     
-    public void menu (Scanner input){
+    public static int menu (Scanner input){
         
         String msg = "*******************\n" +
         "Escolha uma opção: \n" +
@@ -65,16 +65,18 @@ public class Sistema {
             op = Entrada.lerInteiro(msg, input);
         }
 
-        while (op != 0){
-            if(op == 1)
-                cadastro(input);
-            if(op == 2);
+        return op;
 
-            op = Entrada.lerInteiro(msg, input);
+        // while (op != 0){
+        //     if(op == 1)
+        //         cadastro(input);
+        //     if(op == 2);
 
-        }
+        //     op = Entrada.lerInteiro(msg, input);
 
-        System.out.println("Saindo...");
+        // }
+
+        // System.out.println("Saindo...");
     }
 
     public void cadastro(Scanner input){
@@ -104,12 +106,12 @@ public class Sistema {
         }
     
         if (opcao == "c") {
-            ContaCorrente c = new ContaCorrente();
+            ContaCorrente c = new ContaCorrente();  //como colocar o gerente
             CadastrarContaCorrente(c);
         }
         
         if (opcao == "d") {
-            ContaPoupanca c = new ContaPoupanca();
+            ContaPoupanca c = new ContaPoupanca(); //como colocar o gerente?
             CadastrarContaPoupanca(c);
         }   
     
@@ -122,6 +124,34 @@ public class Sistema {
         "b) Depositar" +
         "c) Sacar" +
         "d) Transferir";
+
+        String opcao = Entrada.lerLinha(msg, input);
+
+        while (opcao != "a" || opcao != "b" || opcao != "c" || opcao != "d") {
+            System . out . println (" Opcao invalida . Tente novamente : ") ;
+            opcao = Entrada.lerLinha(msg, input);
+        } 
+
+        if (opcao == "a") {
+            System.out.println("Indique o número da conta: ");
+            String n = input.nextLine();
+            c.extrato(); //
+        }
+
+        if (opcao == "b") {
+            Gerente g = new Gerente();
+            CadastrarGerente(g);
+        }
+    
+        if (opcao == "c") {
+            ContaCorrente c = new ContaCorrente();
+            CadastrarContaCorrente(c);
+        }
+        
+        if (opcao == "d") {
+            ContaPoupanca c = new ContaPoupanca();
+            CadastrarContaPoupanca(c);
+        }  
 
     }
 
